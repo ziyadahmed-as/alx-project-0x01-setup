@@ -5,13 +5,12 @@ export interface PostProps {
   body: string;
 }
 // You can add more interfaces as needed
+// interfaces/index.ts
 export interface UserProps {
   id: number;
   name: string;
   username: string;
   email: string;
-  phone: string;
-  website: string;
   address: {
     street: string;
     suite: string;
@@ -22,6 +21,8 @@ export interface UserProps {
       lng: string;
     };
   };
+  phone: string;
+  website: string;
   company: {
     name: string;
     catchPhrase: string;

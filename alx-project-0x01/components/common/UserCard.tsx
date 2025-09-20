@@ -1,24 +1,30 @@
-import React from "react";
-import Link from 'next/link';
-
+// components/common/UserCard.tsx
 import { UserProps } from "@/interfaces";
-const UserCard: React.FC<UserProps> = (
-    { name, username, email, phone, website, address, company }) => {
+
+const UserCard: React.FC<UserProps> = ({
+  id,
+  name,
+  username,
+  email,
+  phone,
+  website,
+  company,
+  address,
+}) => {
   return (
-    <div className="bg-white shadow-md rounded-lg p-6 mb-4">    
-        <h2 className="text-2xl font-bold mb-2">{name} ({username})</h2>
-        <p className="text-gray-600 mb-1"><strong>Email:</strong> {email}</p>
-        <p className="text-gray-600 mb-1"><strong>Phone:</strong> {phone}</p>
-        <p className="text-gray-600 mb-1"><strong>Website:</strong> <a href={`http://${website}`} className="text-blue-500 hover:underline" target="_blank" rel="noopener noreferrer">{website}</a></p>
-        <div className="text-gray-600 mb-1">
-            <strong>Address:</strong> {address.suite}, {address.street}, {address.city}, {address.zipcode}  
-            <br />
-            <strong>Geo:</strong> Lat: {address.geo.lat}, Lng: {address.geo.lng}
-        </div>
-        <div className="text-gray-600">
-            <strong>Company:</strong> {company.name} - {company.catchPhrase} ({company.bs}) 
-        </div>
+    <div className="max-w-md mx-auto my-6 p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+      <h2 className="text-2xl font-semibold text-gray-800 mb-2">{name}</h2>
+      <p className="text-gray-600 mb-1">Username: {username}</p>
+      <p className="text-gray-600 mb-1">Email: {email}</p>
+      <p className="text-gray-600 mb-1">Phone: {phone}</p>
+      <p className="text-gray-600 mb-1">Website: {website}</p>
+      <p className="text-gray-600 mb-1">Company: {company.name}</p>
+      <p className="text-gray-600">
+        Address: {address.street}, {address.city}
+      </p>
+      <div className="mt-4 text-sm text-gray-500">User ID: {id}</div>
     </div>
   );
-}
+};
+
 export default UserCard;
