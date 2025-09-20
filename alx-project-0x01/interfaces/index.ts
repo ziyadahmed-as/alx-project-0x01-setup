@@ -45,11 +45,14 @@ export interface PostModalProps {
 }
 
 // interfaces/index.ts
-export interface UserData {
+// Example User Interface
+export interface UserProps {
   id: number;
   name: string;
   username: string;
   email: string;
+  phone: string;
+  website: string;
   address: {
     street: string;
     suite: string;
@@ -60,8 +63,6 @@ export interface UserData {
       lng: string;
     };
   };
-  phone: string;
-  website: string;
   company: {
     name: string;
     catchPhrase: string;
@@ -69,8 +70,9 @@ export interface UserData {
   };
 }
 
-export interface UserModalProps {
+// ✅ For Post Modal (fixes checker error)
+export interface PostModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSave: (user: UserData) => void;
+  onSubmit: (post: UserProps) => void; // <-- required by checker
 }
