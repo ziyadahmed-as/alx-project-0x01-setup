@@ -4,7 +4,7 @@ const Home: React.FC = () => {
   return (
     <div className="flex flex-col h-screen">
       <Header />
-      <main className="flex-grow flex items-center justify-center bg-gradient-to-r from-blue-500 to-purple-600">
+      <main className="flex-grow flex items-center justify-center bg-gradient-to-r from-gray-500 to-white-500">
         <div className="text-center">
           <h1 className="text-5xl font-bold text-white">
             Welcome to our Application!
