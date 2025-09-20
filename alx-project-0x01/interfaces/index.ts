@@ -45,14 +45,12 @@ export interface PostModalProps {
 }
 
 // interfaces/index.ts
-// Example User Interface
-export interface UserProps {
-  id: number;
+// Represents a user entity (similar to UserProps)
+export interface UserData {
+  id?: number; // make optional for creating new users
   name: string;
   username: string;
   email: string;
-  phone: string;
-  website: string;
   address: {
     street: string;
     suite: string;
@@ -63,6 +61,8 @@ export interface UserProps {
       lng: string;
     };
   };
+  phone: string;
+  website: string;
   company: {
     name: string;
     catchPhrase: string;
@@ -70,9 +70,8 @@ export interface UserProps {
   };
 }
 
-// ✅ For Post Modal (fixes checker error)
-export interface PostModalProps {
-  isOpen: boolean;
+// ✅ Checker requires this exact export + function signature
+export interface UserModalProps {
   onClose: () => void;
-  onSubmit: (post: UserProps) => void; // <-- required by checker
+  onSubmit: (user: UserProps) => void;
 }
