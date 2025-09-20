@@ -29,3 +29,17 @@ export interface UserProps {
     bs: string;
   };
 }
+// interfaces/index.ts
+
+
+export interface PostData {
+  userId: number;
+  id?: number;   // optional since it will be generated
+  title: string;
+  body: string;
+}
+
+export interface PostModalProps {
+  onClose: () => void;
+  onSubmit: (post: PostData) => void;
+}
