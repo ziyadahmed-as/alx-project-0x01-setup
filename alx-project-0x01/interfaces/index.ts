@@ -4,3 +4,5 @@ export interface PostProps {
   title: string;
   body: string;
 }
+
+// You can add more interfaces as needed
