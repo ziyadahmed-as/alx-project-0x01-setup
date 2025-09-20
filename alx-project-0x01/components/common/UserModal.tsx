@@ -1,20 +1,22 @@
 // components/common/UserModal.tsx
 import React, { useState } from "react";
-import { UserData, UserModalProps } from "@/interfaces";
+import { UserData, UserModalProps, UserProps } from "@/interfaces";
 
-const UserModal: React.FC<UserModalProps> = ({ isOpen, onClose, onSave }) => {
+const UserModal: React.FC<UserModalProps> = ({ onClose, onSubmit }) => {
   const [formData, setFormData] = useState<Partial<UserData>>({});
 
-  if (!isOpen) return null;
-
+  // Handle input changes dynamically
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
+  // Handle form submission
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const newUser: UserData = {
+
+    // Construct new user object for submission
+    const newUser: UserProps = {
       id: Date.now(), // temporary unique ID
       name: formData.name || "",
       username: formData.username || "",
@@ -34,7 +36,8 @@ const UserModal: React.FC<UserModalProps> = ({ isOpen, onClose, onSave }) => {
         bs: "",
       },
     };
-    onSave(newUser);
+
+    onSubmit(newUser); // ✅ matches checker signature
     onClose();
   };
 

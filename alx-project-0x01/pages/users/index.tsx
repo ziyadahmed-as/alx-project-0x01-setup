@@ -3,17 +3,18 @@ import { useState } from "react";
 import UserCard from "@/components/common/UserCard";
 import UserModal from "@/components/common/UserModal";
 import Header from "@/components/layout/Header";
-import { UserData } from "@/interfaces";
+import { UserData, UserProps } from "@/interfaces";
 
 interface UsersPageProps {
   users: UserData[];
 }
 
 const Users: React.FC<UsersPageProps> = ({ users }) => {
-  const [userList, setUserList] = useState<UserData[]>(users);
+  const [userList, setUserList] = useState<UserProps[]>(users);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleAddUser = (user: UserData) => {
+  // Handle adding a new user from the modal
+  const handleAddUser = (user: UserProps) => {
     setUserList([...userList, user]);
   };
 
@@ -32,7 +33,7 @@ const Users: React.FC<UsersPageProps> = ({ users }) => {
         </div>
 
         <div className="grid grid-cols-3 gap-4">
-          {userList.map((user) => (
+          {userList.map((user: UserProps) => (
             <UserCard
               key={user.id}
               id={user.id}
@@ -50,14 +51,14 @@ const Users: React.FC<UsersPageProps> = ({ users }) => {
 
       {/* User Modal */}
       <UserModal
-        isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        onSave={handleAddUser}
+        onSubmit={handleAddUser} // ✅ Updated to match UserModalProps interface
       />
     </div>
   );
 };
 
+// Fetch users from API at build time
 export async function getStaticProps() {
   const response = await fetch("https://jsonplaceholder.typicode.com/users");
   const users = await response.json();

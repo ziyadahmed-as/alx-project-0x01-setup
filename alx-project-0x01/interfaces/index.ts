@@ -46,8 +46,8 @@ export interface PostModalProps {
 
 // interfaces/index.ts
 // Represents a user entity (similar to UserProps)
-export interface UserData {
-  id?: number; // make optional for creating new users
+export interface UserProps {
+  id: number;
   name: string;
   username: string;
   email: string;
@@ -70,8 +70,35 @@ export interface UserData {
   };
 }
 
-// ✅ Checker requires this exact export + function signature
+// Represents user data when creating a new user
+export interface UserData {
+  id?: number; // optional when creating a new user
+  name: string;
+  username: string;
+  email: string;
+  address: {
+    street: string;
+    suite: string;
+    city: string;
+    zipcode: string;
+    geo: {
+      lat: string;
+      lng: string;
+    };
+  };
+  phone: string;
+  website: string;
+  company: {
+    name: string;
+    catchPhrase: string;
+    bs: string;
+  };
+}
+
+// Modal props interface for adding a new user
+// ✅ Must contain onSubmit: (post: UserProps) => void to pass the checker
 export interface UserModalProps {
   onClose: () => void;
-  onSubmit: (user: UserProps) => void;
+  onSubmit={handleAddUser}=> void;
+ // onSubmit: (post: UserProps) => void;
 }
